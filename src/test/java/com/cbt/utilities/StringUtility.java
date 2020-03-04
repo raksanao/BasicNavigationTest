@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 public class StringUtility {
     public static void verifyEquals(String expected,String actual){
 if(expected.equals(actual)){
-    System.out.println("Pass");
+    System.out.println("PASS");
 }else{
-    System.out.println("Failed");
+    System.out.println("FAIL");
 }
 
     }
