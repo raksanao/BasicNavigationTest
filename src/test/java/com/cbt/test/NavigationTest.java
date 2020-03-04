@@ -28,9 +28,9 @@ verifyEquals(driver.getTitle(),"Google");
     }
     public static void verifyEquals(String expected,String actual) {
         if (expected.equals(actual)) {
-            System.out.println("pass");
+            System.out.println("Pass");
         } else {
-            System.out.println("failed");
+            System.out.println("Failed");
         }
     }
     }
