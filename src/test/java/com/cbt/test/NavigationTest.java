@@ -1,36 +1,41 @@
 package com.cbt.test;
 
+import com.cbt.utilities.StringUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import static com.cbt.utilities.StringUtility.verifyEquals;
 
 public class NavigationTest {
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
 
-  driver.get("http://google.com");
-  String titleGoog=driver.getTitle();
+        driver.get("http://google.com");
+        String titleGoog=driver.getTitle();
 
         System.out.println(titleGoog);
-  Thread.sleep(3000);
-  driver.navigate().to("https://etsy.com");
-  Thread.sleep(3000);
-  String tytleEtcy=driver.getTitle();
+        Thread.sleep(3000);
+
+
+        driver.get("https://etsy.com");
+        Thread.sleep(3000);
+        String tytleEtcy=driver.getTitle();
+
         System.out.println(tytleEtcy);
         driver.navigate().back();
-        verifyEquals(driver.getTitle(),"Google");
+
+    // StringUtility.verifyEquals(driver.getTitle(),titleGoog);
+        verifyEquals(driver.getTitle(),titleGoog);
 
         driver.navigate().forward();
-verifyEquals(driver.getTitle(),"Google");
-        driver.close();
+
+    verifyEquals(driver.getTitle(),tytleEtcy);
+
+        Thread.sleep(3000);
+        driver.quit();
 
     }
-    public static void verifyEquals(String expected,String actual) {
-        if (expected.equals(actual)) {
-            System.out.println("Pass");
-        } else {
-            System.out.println("Failed");
-        }
-    }
-    }
+
+}
