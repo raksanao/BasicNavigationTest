@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TitleVerification3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         List<String> urls = Arrays.asList("https://www.luluandgeorgia.com/",
                 "https://wayfair.com/",
@@ -14,18 +14,13 @@ public class TitleVerification3 {
                 "https://westelm.com/");
 
 
-        for (String eachUrl : urls) {
-            WebDriver driver = BrowserFactory.getDriver("chrome");
-            driver.get(eachUrl);
-            String title = driver.getTitle();
+        WebDriver driver = BrowserFactory.getDriver("chrome");
 
-            if (title.contains(eachUrl.substring(9))) {
-                System.out.println("Pass");
-            } else System.out.println("Fail");
+        for (String each : urls) {
 
-
+            driver.get(each);
+            Thread.sleep(3000);
             driver.close();
-
         }
     }
 }
