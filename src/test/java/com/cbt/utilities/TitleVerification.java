@@ -5,29 +5,46 @@ import org.openqa.selenium.WebDriver;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.cbt.utilities.StringUtility.verifyEquals;
+
 
 public class TitleVerification {
 
 
     public static void main(String[] args) throws InterruptedException {
 
+        WebDriver drivers= BrowserFactory.getDriver("chrome");
+
         List<String> urls = Arrays.asList("http://practice.cybertekschool.com/",
                 "http://practice.cybertekschool.com/dropdown",
                 "http://practice.cybertekschool.com/login");
 
+      String t1=urls.get(0) ;
 
-   WebDriver drivers= BrowserFactory.getDriver("chrome");
-   for(String each:urls){
-       drivers.get(each);
-     String url=drivers.getCurrentUrl();
-       if(url.startsWith("http://practice.cybertekschool.com/")){
-           System.out.println("Pass");
-       }else{
-           System.out.println("fail");
-       }
-       drivers.quit();
+    String title1=drivers.getTitle();
 
-   }
+    Thread.sleep(3000);
+
+    String t2=urls.get(1);
+    String title2=drivers.getTitle();
+    Thread.sleep(300);
+
+    String t3=urls.get(2);
+    String title3=drivers.getTitle();
+    Thread.sleep(3000);
+
+    if(StringUtility.verifyEquals(title1,title2)){
+        if(StringUtility.verifyEquals(title1,title3)){
+            System.out.println("test pass");
+        }else{
+            System.out.println("Test fail");
+        }
+
+
+ }
+Thread.sleep(3000);
+drivers.quit();
+
 
 
 
