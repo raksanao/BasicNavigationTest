@@ -39,7 +39,14 @@ public class TitleVerification {
         }else{
             System.out.println("They don't have same title");
         }
+        for (int i = 0; i < urls.size(); i++) {
+            if(urls.get(i).startsWith("http://practice.cybertekschool.com/")){
+                System.out.println("pass");
 
+        }else{
+                System.out.println("fail");
+            }
+}
 
  }
 Thread.sleep(3000);

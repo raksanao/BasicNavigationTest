@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TitleVerification2 {
-    public static void main(String[] args) {
-        List<String> urls = Arrays.asList("https://lulugandgeorgia.com",
+    public static void main(String[] args) throws InterruptedException {
+        List<String> urls = Arrays.asList("https://luluandgeorgia.com",
                 "https://wayfair.com/",
                 "https://walmart.com ",
                 "https://westelm.com/");
@@ -16,47 +16,18 @@ public class TitleVerification2 {
 
         WebDriver driver = BrowserFactory.getDriver("chrome");
 
-        for (String eachUrl : urls) {
-            driver.get(eachUrl);
-            String title=driver.getTitle();
 
-            if(title.contains(eachUrl.substring(9))){
-                System.out.println("Pass");
-            }else System.out.println("Fail");
+        for (int i = 0; i < urls.size(); i++) {
+            driver.get(urls.get(i));
+            String title=driver.getTitle().toLowerCase().replace(" ","");
+            if (urls.get(i).contains(title)) {
+                System.out.println("pass");
+            } else {
+                System.out.println("fail");
+            }
 
         }
-        driver.quit();
-        }
-
-
-
-
-
-
-
-
-//        for (String url : urls) {
-//            driver.get(url);
-//            String title = driver.getTitle();
-//            title = title.replace(" ", "").toLowerCase();
-//            System.out.println(url + " contains: " + title + "? " + url.contains(title));
-//        }
-//        driver.quit();
-//    }
-
-
-//
-//        for(String eachUrl:urls){
-//            driver.get(eachUrl);
-//String title=driver.getTitle();
-//title=title.replace(" ","").toLowerCase();
-//if(title.contains(eachUrl)){
-//               System.out.println("pass");
-//           }else{
-//               System.out.println("fail");
-//           }
-//
-//driver.close();
-//        }
-//    }
+        Thread.sleep(2000);
+        driver.close();
+    }
 }
