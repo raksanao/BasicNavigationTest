@@ -2,6 +2,7 @@ package com.cbt.utilities;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,31 +14,30 @@ public class TitleVerification {
 
     public static void main(String[] args) throws InterruptedException {
 
-        WebDriver drivers= BrowserFactory.getDriver("chrome");
+
 
         List<String> urls = Arrays.asList("http://practice.cybertekschool.com/",
                 "http://practice.cybertekschool.com/dropdown",
                 "http://practice.cybertekschool.com/login");
-
-      String t1=urls.get(0) ;
+        WebDriver drivers= BrowserFactory.getDriver("chrome");
+       drivers.get(urls.get(0));
 
     String title1=drivers.getTitle();
-
     Thread.sleep(3000);
 
-    String t2=urls.get(1);
+   drivers.get(urls.get(1));
     String title2=drivers.getTitle();
     Thread.sleep(300);
 
-    String t3=urls.get(2);
+   drivers.get(urls.get(2));
     String title3=drivers.getTitle();
     Thread.sleep(3000);
 
     if(StringUtility.verifyEquals(title1,title2)){
         if(StringUtility.verifyEquals(title1,title3)){
-            System.out.println("test pass");
+            System.out.println("They all have same title");
         }else{
-            System.out.println("Test fail");
+            System.out.println("They don't have same title");
         }
 
 
@@ -47,7 +47,5 @@ drivers.quit();
 
 
 
-
-
     }
-}
+    }
